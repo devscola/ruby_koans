@@ -81,4 +81,33 @@ class AboutArrays < Neo::Koan
     assert_equal __([1, 2]), array
   end
 
+  def test_array_substraction
+    array = [1,2,3,4,5]
+    another_array = [2]
+
+    assert_equal __([1,3,4,5]), array - another_array
+  end
+
+  def test_substracting_multiple_array_values
+    array = [1,2,2,3,3,4,5]
+    another_array = [2,2,3,3] 
+
+    assert_equal __([1,4,5]), array - another_array
+  end 
+
+  def test_how_array_substraction_really_work
+    array = [2,3,4,5,6,2,7,2]
+    another_array = [2]
+
+    assert_equal __([3,4,5,6,7]), array - another_array
+  end
+  
+  def test_substracting_multiple_values_from_arrays
+    array = [1,2,2,3,3,4,5,6,2,3,7]
+    another_array = __([2,3])
+
+    assert_equal 2, another_array.size , "'another_array' should have two elements"
+    assert_equal  [1,4,5,6,7], array - another_array
+  end
+
 end
