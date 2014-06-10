@@ -100,6 +100,7 @@ class AboutArrays < Neo::Koan
     another_array = [2]
 
     assert_equal __, array - another_array
+
   end
   
   def test_substracting_multiple_values_from_arrays
