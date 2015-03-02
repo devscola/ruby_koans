@@ -93,4 +93,24 @@ class AboutBlocks < Neo::Koan
     assert_equal __(11), method_with_explicit_block(&add_one)
   end
 
+  def method_block
+    yield
+  end
+
+  def test_lambda_vs_blocks_vs_proc
+    test_string_lambda = lambda { "This is a test" }
+    assert_equal ___("This is a test"), test_string_lambda.call
+    assert_equal ___("THIS IS A TEST"), test_string_lambda.call.upcase 
+    assert_equal ___(14), test_string_lambda.call.length
+
+    test_num_lambda = lambda { |n| n * 9 }
+    assert_equal ___(27), test_num_lambda.call(3)
+
+    changed_value = 30
+    method_block { changed_value += 10 }
+    assert_equal ___(40), changed_value
+    
+    p = Proc.new { |n| n * 3 }
+    assert_equal ___(6), p.call(2)
+  end
 end
